@@ -1,0 +1,28 @@
+﻿@model IEnumerable<ProductcatApp.Models.Category>
+
+<h2>Category List</h2>
+
+<!-- Link to create a new category -->
+<p>
+    <a href="/Category/Create">Add New Category</a> |
+    <a href="/Product/Index">Go to Products</a>
+</p>
+
+<table border="1" cellpadding="5">
+    <tr>
+        <th>CategoryId</th>
+        <th>CategoryName</th>
+        <th>Actions</th>
+    </tr>
+    @foreach (var c in Model)
+    {
+        <tr>
+            <td>@c.CategoryId</td>
+            <td>@c.CategoryName</td>
+            <td>
+                <a href="/Category/Edit/@c.CategoryId">Edit</a> |
+                <a href="/Category/Delete/@c.CategoryId">Delete</a>
+            </td>
+        </tr>
+    }
+</table>

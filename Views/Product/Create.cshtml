@@ -1,0 +1,26 @@
+﻿@model ProductcatApp.Models.Product
+
+<h2>Create Product</h2>
+
+<form method="post" action="/Product/Create">
+    <div>
+        <label>Product Name:</label>
+        <input type="text" name="ProductName" value="@Model?.ProductName" required />
+    </div>
+
+    <div>
+        <label>Category:</label>
+        <select name="CategoryId" required>
+            <option value="">-- Select Category --</option>
+            @foreach (var cat in ViewBag.Categories as List<ProductcatApp.Models.Category>)
+            {
+                <option value="@cat.CategoryId">@cat.CategoryName</option>
+            }
+        </select>
+    </div>
+
+    <br />
+    <button type="submit">Save</button>
+</form>
+
+<a href="/Product/Index">Back to List</a>

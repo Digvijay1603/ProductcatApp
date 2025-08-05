@@ -1,0 +1,29 @@
+﻿@model ProductcatApp.Models.Product
+
+<h2>Edit Product</h2>
+
+<form method="post" action="/Product/Edit">
+    <input type="hidden" name="ProductId" value="@Model.ProductId" />
+
+    <div>
+        <label>Product Name:</label>
+        <input type="text" name="ProductName" value="@Model.ProductName" required />
+    </div>
+
+    <div>
+        <label>Category:</label>
+        <select name="CategoryId" required>
+            @foreach (var cat in ViewBag.Categories as List<ProductcatApp.Models.Category>)
+            {
+                <option value="@cat.CategoryId" @(cat.CategoryId == Model.CategoryId ? "selected" : "")>
+                    @cat.CategoryName
+                </option>
+            }
+        </select>
+    </div>
+
+    <br />
+    <button type="submit">Update</button>
+</form>
+
+<a href="/Product/Index">Back to List</a>

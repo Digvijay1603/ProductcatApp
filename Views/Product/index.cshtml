@@ -1,0 +1,48 @@
+﻿@model IEnumerable<ProductcatApp.Models.Product>
+
+<h2>Product List</h2>
+
+<p>
+    <a href="/Product/Create">Add New Product</a> |
+    <a href="/Category/Index">Go to Categories</a>
+</p>
+
+<table border="1" cellpadding="5">
+    <tr>
+        <th>ProductId</th>
+        <th>ProductName</th>
+        <th>CategoryId</th>
+        <th>CategoryName</th>
+        <th>Actions</th>
+    </tr>
+    @foreach (var p in Model)
+    {
+        <tr>
+            <td>@p.ProductId</td>
+            <td>@p.ProductName</td>
+            <td>@p.CategoryId</td>
+            <td>@p.CategoryName</td>
+            <td>
+                <a href="/Product/Edit/@p.ProductId">Edit</a> |
+                <a href="/Product/Delete/@p.ProductId">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
+
+<!-- Dynamic Pagination -->
+<div style="margin-top: 10px;">
+    Page:
+    @for (int i = 1; i <= ViewBag.TotalPages; i++)
+    {
+        if (i == ViewBag.CurrentPage)
+        {
+            <strong>@i</strong>
+        }
+        else
+        {
+            <a href="/Product/Index?page=@i">@i</a>
+        }
+        @:
+    }
+</div>
